@@ -64,7 +64,21 @@ function createMap(earthquakes) {
     var legend = L.control({
         position: "bottomright"
     });
-
+    function getColorGrades(grades) {
+        if (grades < -10) {
+            return 'yellow'
+        } else if (grades < 10) {
+            return 'yellowgreen'
+        } else if (grades < 30) {
+            return 'gold'
+        } else if (grades < 50) {
+            return 'darkorange'
+        } else if (grades < 70) {
+            return 'coral'
+        } else {
+            return 'red'
+        }
+    };
     legend.onAdd = function(myMap) {
         var div = L.DomUtil.create("div", "info legend"),
         grades = [-10, 10, 30, 50, 70, 90]
@@ -73,7 +87,7 @@ function createMap(earthquakes) {
     // Create legend
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
-            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            '<i style="background:' + getColorGrades(grades[i] + 1) + '"></i> ' +
             grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
     }
         return div;
@@ -83,15 +97,15 @@ function createMap(earthquakes) {
 
 // Create color function
 function getColor(magnitude) {
-    if (magnitude > 1) {
+    if (magnitude < 1) {
         return 'yellow'
-    } else if (magnitude > 2) {
+    } else if (magnitude < 2) {
         return 'yellowgreen'
-    } else if (magnitude > 3) {
+    } else if (magnitude < 3) {
         return 'gold'
-    } else if (magnitude > 4) {
+    } else if (magnitude < 4) {
         return 'darkorange'
-    } else if (magnitude > 5) {
+    } else if (magnitude < 5) {
         return 'coral'
     } else {
         return 'red'
