@@ -68,6 +68,7 @@ function createMap(earthquakes) {
     legend.onAdd = function(myMap) {
         var div = L.DomUtil.create("div", "info legend"),
         grades = [-10, 10, 30, 50, 70, 90]
+        div.innerHTML += "<h3 style='text-align: center'>Depth</h3>"
 
     // Create legend
     for (var i = 0; i < grades.length; i++) {
