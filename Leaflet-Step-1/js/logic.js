@@ -75,7 +75,7 @@ function createMap(earthquakes) {
             return 'darkorange'
         } else if (grades < 70) {
             return 'coral'
-        } else {
+        } else if (grades <90) {
             return 'red'
         }
     };
